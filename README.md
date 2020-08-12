@@ -15,17 +15,18 @@ AC自动机的Python实现及其性能对比
 
 （词典装载时间，数据查询时间）
 
-|       实现       |       PKU       |      AS       |    jieba     |
-| :--------------: | :-------------: | :-----------: | :----------: |
-|    tried_dict    | （0.148, 2.23） | (0.533, 8.96) | (1.98, 4.38) |
-| ahocorasick_dict |  (0.437, 1.12)  | (2.81, 5.95)  | (49.0, 2.67) |
-|                  |                 |               |              |
+|       实现       |       PKU       |       AS       |    jieba     |
+| :--------------: | :-------------: | :------------: | :----------: |
+|    tried_dict    | （0.148, 2.23） | (0.533, 8.96)  | (1.98, 4.38) |
+| ahocorasick_dict |  (0.437, 1.12)  |  (2.81, 5.95)  | (49.0, 2.67) |
+|    tried_dar     |  (9.80, 3.96)   | (70.15, 19.35) |      --      |
 
 ### 结果分析
 
-1. **词典装载**：tried_dict词典装载时间随词典数量增长装载时间呈现线性增长
-2. **运行性能**：从性能上看，tried_dict性能约为100W c/s，ahocorasick_dict 实现约为tried_dict实现性能的1.5-2.0倍
-3. LAC、pkuseg、thulac等分词器性能低于 5W c/s，从ahocorasick_dict替换为tried_dict后性能下降低于2.5%
+1. **tried_dar**：普通双数组实现并不适用于Python，其性能反而下降严重
+2. **词典装载**：tried_dict词典装载时间随词典数量增长装载时间呈现线性增长
+3. **运行性能**：从性能上看，tried_dict性能约为100W c/s，ahocorasick_dict 实现约为tried_dict实现性能的1.5-2.0倍
+4. LAC、pkuseg、thulac等分词器性能低于 5W c/s，从ahocorasick_dict替换为tried_dict后性能下降低于2.5%
 
 ### 模块脚本
 
@@ -34,6 +35,7 @@ AC自动机的Python实现及其性能对比
 |____imp                          # 各个版本AC自动机的实现
 | |____ahocorasick_dict.py        # 基于词典的AC自动机
 | |____tried_dict.py              # 基于词典的Tried树
+| |____tried_dar.py               # 基于双数组的Tried树
 |____test_ac.py                   # 测试各词典AC自动机的脚本
 ```
 

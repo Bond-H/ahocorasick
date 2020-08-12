@@ -23,6 +23,7 @@ import time
 from io import open
 from imp import ahocorasick_dict
 from imp import tried_dict
+from imp import tried_dar
 
 
 def test_eval(imp, data_name):
@@ -52,8 +53,11 @@ if __name__ == "__main__":
   test_eval(tried_dict, 'pku')
   test_eval(tried_dict, 'as')
   test_eval(tried_dict, 'jieba')
-  
+
   test_eval(ahocorasick_dict, 'pku')
   test_eval(ahocorasick_dict, 'as')
   test_eval(ahocorasick_dict, 'jieba')
+
+  test_eval(tried_dar, 'pku')
+  test_eval(tried_dar, 'as')
 
