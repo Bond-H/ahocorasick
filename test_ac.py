@@ -24,6 +24,7 @@ from io import open
 from imp import ahocorasick_dict
 from imp import tried_dict
 from imp import tried_dar
+from imp import prefix_dict
 
 
 def test_eval(imp, data_name):
@@ -38,6 +39,8 @@ def test_eval(imp, data_name):
     start = time.time()
     for word in words:
       ac.add_word(word)
+    end_add = time.time()
+    print("%s %s add_word time: %f"%(imp.__name__, data_name, end_add-start))
     ac.make()
     end = time.time()
     print("%s %s load time: %f"%(imp.__name__, data_name, end-start))
@@ -54,10 +57,14 @@ if __name__ == "__main__":
   test_eval(tried_dict, 'as')
   test_eval(tried_dict, 'jieba')
 
-  test_eval(ahocorasick_dict, 'pku')
-  test_eval(ahocorasick_dict, 'as')
-  test_eval(ahocorasick_dict, 'jieba')
+  # test_eval(ahocorasick_dict, 'pku')
+  # test_eval(ahocorasick_dict, 'as')
+  # test_eval(ahocorasick_dict, 'jieba')
 
-  test_eval(tried_dar, 'pku')
-  test_eval(tried_dar, 'as')
+  test_eval(prefix_dict, 'pku')
+  test_eval(prefix_dict, 'as')
+  test_eval(prefix_dict, 'jieba')
+
+  # test_eval(tried_dar, 'pku')
+  # test_eval(tried_dar, 'as')
 
