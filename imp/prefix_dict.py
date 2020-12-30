@@ -6,9 +6,6 @@
 @Desc    :   None
 '''
 
-from LAC import LAC
-lac = LAC()
-
 class TriedTree(object):
     """实现Tried树的类
 
@@ -47,7 +44,7 @@ class TriedTree(object):
         result = []
         length = len(content)
         for start in range(length):
-            for end in range(start+1, length):
+            for end in range(start+1, length + 1):
                 pos = self.tree.get(content[start:end], -1)
                 if pos == -1:
                     break
@@ -73,7 +70,7 @@ class TriedTree(object):
         
         length = len(content)
         for start in range(length):
-            for end in range(start+1, length):
+            for end in range(start+1, length + 1):
                 pos = self.tree.get(content[start:end], -1)
                 if pos == -1:
                     break
@@ -92,5 +89,5 @@ if __name__ == "__main__":
     for begin, end in tree.search(string):
         print(string[begin:end])
 
-
-
+    for begin, end in tree.search_all(string):
+        print(string[begin:end])
